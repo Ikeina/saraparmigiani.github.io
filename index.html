@@ -71,9 +71,12 @@ p.lead { font-size: 1.1rem; line-height: 1.8; }
 .pub-item .status { font-size: 0.8rem; color: var(--accent); font-weight: 500; font-style: italic; }
 .pub-note { margin-top: 2rem; padding: 1.2rem 1.5rem; background: var(--accent-light); border-radius: 2px; font-size: 0.9rem; color: var(--accent); }
 
-.fig-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
+.fig-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; align-items: start; }
 .fig-card { border: 1px solid var(--rule); border-radius: 2px; overflow: hidden; background: white; }
-.fig-card img { width: 100%; height: 200px; object-fit: cover; display: block; background: var(--warm); }
+.fig-card .fig-link { display: block; background: var(--warm); }
+.fig-card img { width: 100%; height: auto; display: block; }
+.fig-card.cover .fig-link { text-align: center; padding: 1.2rem; }
+.fig-card.cover img { width: auto; max-width: 190px; margin: 0 auto; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }
 .fig-card figcaption { padding: 0.8rem 1rem; font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
 .fig-card figcaption a { color: var(--accent); text-decoration: none; }
 .fig-card figcaption a:hover { text-decoration: underline; }
@@ -167,7 +170,7 @@ footer { text-align: center; padding: 2rem; font-size: 0.8rem; color: var(--mute
       <div class="affiliation">University of Oregon · Center for Translational Neuroscience</div>
       <h1>Sara <span>Parmigiani</span>, PhD</h1>
       <p class="subtitle">Can we read the brain’s control circuitry well enough to know when, where, and in whom to intervene?
-        I investigate and improve brain stimulation systems, multi-scale recording pipelines, and open-source tools to inquire into cortical circuits and their functions, aiming at understanding what goes wrong in neurological and psychiatric conditions.</p>
+      I investigate and improve brain stimulation systems, multi-scale recording pipelines, and open-source tools to inquire into cortical circuits and their functions, aiming at understanding what goes wrong in neurological and psychiatric conditions.</p>
       <div class="contact-links">
         <a href="mailto:sparmi@uoregon.edu">Email</a>
         <a href="https://scholar.google.it/citations?user=10q2-XkAAAAJ&hl=en&oi=ao" target="_blank">Google Scholar</a>
@@ -183,7 +186,7 @@ footer { text-align: center; padding: 2rem; font-size: 0.8rem; color: var(--mute
 <section id="research">
   <div class="section-label">Research</div>
   <h2>Stimulation, brain stimulation</h2>
-  <p class="lead">Talking the brain language means sometimes to perturb and stimulate the brain (with magnetic pulses, implanted electrodes, ultrasounds, etc.) but we still do it without fully understanding what the stimulation does to the underlying circuits, whether it arrived at the right moment, or why the same intervention helps one patient and harms another. My research aims at build theories and engineer the tools to close that gap.</p>
+  <p class="lead">Talking the brain language means sometimes to perturb and stimulate the brain (with magnetic pulses, implanted electrodes, ultrasounds, etc.), but we still do it without fully understanding what the stimulation does to the underlying circuits, whether it arrives at the right moment, or why the same intervention helps one patient and harms another. My research aims at build theories and engineer the tools to close that gap.</p>
 
   <div class="pillars">
     <div class="pillar">
@@ -280,27 +283,28 @@ footer { text-align: center; padding: 2rem; font-size: 0.8rem; color: var(--mute
     </li>
   </ul>
 
-  <!-- ============================================================
-       OPTIONAL FIGURE GALLERY — currently disabled.
-       To turn it on: (1) save the figure image files into your repo
-       (e.g. fig-momi.jpg, fig-mikulan.jpg), (2) confirm the filenames
-       below match, (3) delete this opening comment line and the
-       closing "-->" line at the end of the block.
-       Only use figures from your OPEN-ACCESS (CC BY) papers and keep
-       the attribution lines below. See notes in chat.
   <h3 style="font-family: var(--serif); font-size: 1.4rem; margin-top: 2.5rem; margin-bottom: 0.5rem;">Selected Figures</h3>
-  <p style="font-size: 0.9rem; color: var(--muted); margin-bottom: 0;">From my open-access publications, reused under their Creative Commons licenses.</p>
+  <p style="font-size: 0.9rem; color: var(--muted); margin-bottom: 0;">Figures from my open-access publications, reused under their Creative Commons licenses, and a journal cover featuring my work.</p>
   <div class="fig-gallery">
     <figure class="fig-card">
-      <img src="fig-momi.jpg" alt="Gradients of cortical excitability and recurrence">
-      <figcaption>Gradients of excitability and recurrence across cortical networks. From Momi, Wang, <strong>Parmigiani</strong> et al., <em>Nature Communications</em> (2025), <a href="https://www.nature.com/articles/s41467-025-58187-6" target="_blank" rel="noopener">CC BY 4.0</a>.</figcaption>
+      <a class="fig-link" href="https://www.nature.com/articles/s41467-025-58187-6" target="_blank" rel="noopener">
+        <img src="fig-momi.webp" alt="Multi-scale workflow: stimulation, recording, and whole-brain model fitting">
+      </a>
+      <figcaption>Multi-scale workflow — intracranial and scalp EEG during stimulation, network identification, and whole-brain computational model fitting. Momi, Wang, <strong>Parmigiani</strong> et al., <em>Nature Communications</em> (2025), <a href="https://www.nature.com/articles/s41467-025-58187-6" target="_blank" rel="noopener">CC BY 4.0</a>.</figcaption>
     </figure>
     <figure class="fig-card">
-      <img src="fig-mikulan.jpg" alt="Simultaneous intracerebral stimulation and HD-EEG setup">
-      <figcaption>Ground-truth recording setup for source localization. From Mikulan, Russo, <strong>Parmigiani</strong> et al., <em>Scientific Data</em> (2020), <a href="https://www.nature.com/articles/s41597-020-0467-x" target="_blank" rel="noopener">CC BY 4.0</a>.</figcaption>
+      <a class="fig-link" href="https://www.nature.com/articles/s41597-020-0467-x" target="_blank" rel="noopener">
+        <img src="fig-mikulan.webp" alt="Intracerebral stimulation sites across patients and intensities">
+      </a>
+      <figcaption>Intracerebral stimulation sites and recording setup across patients and stimulation intensities — ground truth for source localization. Mikulan, Russo, <strong>Parmigiani</strong> et al., <em>Scientific Data</em> (2020), <a href="https://www.nature.com/articles/s41597-020-0467-x" target="_blank" rel="noopener">CC BY 4.0</a>.</figcaption>
+    </figure>
+    <figure class="fig-card cover">
+      <a class="fig-link" href="https://www.sciencedirect.com/science/article/abs/pii/S1388245725003049" target="_blank" rel="noopener">
+        <img src="cover-clinph.png" alt="Clinical Neurophysiology journal cover">
+      </a>
+      <figcaption>Cover of <em>Clinical Neurophysiology</em> (Vol. 174, 2025), featuring our work on real-time optimization of prefrontal cortical excitability.</figcaption>
     </figure>
   </div>
-  -->
 </section>
 
 <section id="cv">
@@ -334,7 +338,7 @@ footer { text-align: center; padding: 2rem; font-size: 0.8rem; color: var(--mute
   <h3 style="font-family: var(--serif); font-size: 1.4rem; margin-top: 2.5rem; margin-bottom: 1rem;">Invited Symposium Talks</h3>
   <ul class="pres-list">
     <li class="pres-item">
-      <span class="conf">2026 NYC Neuromodulation Conference, City College of New York</span> <span class="conf-date">Jul–Aug 2026</span>
+      <span class="conf"><a href="https://neuromodec.org/2026-nyc-neuromodulation-conference/schedule.html" target="_blank" rel="noopener" style="color: inherit; text-decoration: none; border-bottom: 1px solid var(--rule);">2026 NYC Neuromodulation Conference, City College of New York</a></span> <span class="conf-date">Jul–Aug 2026</span>
       <div class="pres-title">Highlight Talk (session: New Neuromodulation for Parkinson's Disease): "Circuit Decoding Across Scales: DBS and EEG Integration in Parkinson's Disease for Motor and Non-Motor Symptoms."</div>
     </li>
     <li class="pres-item">
@@ -383,7 +387,7 @@ footer { text-align: center; padding: 2rem; font-size: 0.8rem; color: var(--mute
     <div class="news-item">
       <div class="date">Jul–Aug 2026</div>
       <h4>Highlight Talk at NYC Neuromodulation Conference</h4>
-      <p>"Circuit Decoding Across Scales: DBS and EEG Integration in Parkinson's Disease for Motor and Non-Motor Symptoms." City College of New York.</p>
+      <p>"Circuit Decoding Across Scales: DBS and EEG Integration in Parkinson's Disease for Motor and Non-Motor Symptoms." City College of New York. <a href="https://neuromodec.org/2026-nyc-neuromodulation-conference/schedule.html" target="_blank" rel="noopener" style="color: var(--accent); font-weight: 500; text-decoration: none;">See schedule →</a></p>
     </div>
     <div class="news-item">
       <div class="date">2025–2026</div>
@@ -393,12 +397,12 @@ footer { text-align: center; padding: 2rem; font-size: 0.8rem; color: var(--mute
     <div class="news-item">
       <div class="date">2025</div>
       <h4>NaviNIBS published in Journal of Neural Engineering</h4>
-      <p> An open-source neuronavigation toolbox for noninvasive brain stimulation is now available for the research community.</p>
+      <p>Open-source neuronavigation toolbox for noninvasive brain stimulation is now available for the research community.</p>
     </div>
     <div class="news-item">
       <div class="date">2021</div>
       <h4>Seal of Excellence — European Commission</h4>
-      <p>Horizon Europe MSCA Postdoctoral Fellowships. Project ReprInt: personalized closed-loop approaches to inhibitory control deficits in depression and OCD.</p>
+      <p>Horizon Europe MSCA Postdoctoral Fellowships. Project ReprInt: personalized closed-loop approaches to inhibitory control deficits in depression and OCD. </p>
     </div>
   </div>
 </section>
