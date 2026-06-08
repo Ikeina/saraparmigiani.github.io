@@ -28,8 +28,11 @@ nav .links { display: flex; gap: 1.8rem; }
 nav .links a { text-decoration: none; color: var(--muted); font-size: 0.85rem; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; transition: color 0.2s; }
 nav .links a:hover { color: var(--accent); }
 
-.hero { min-height: 100vh; display: flex; align-items: center; padding: 8rem 2rem 4rem; max-width: 1100px; margin: 0 auto; }
+.hero { position: relative; min-height: 100vh; display: flex; align-items: center; padding: 8rem 2rem 4rem; max-width: 1100px; margin: 0 auto; }
 .hero-inner { display: flex; align-items: center; gap: 3rem; width: 100%; }
+.hero-epigraph { position: absolute; top: 5.5rem; right: 2rem; max-width: 290px; text-align: right; border-right: 2px solid var(--accent); padding-right: 1rem; z-index: 1; animation: fadeUp 0.8s ease-out 0.6s both; }
+.hero-epigraph .quote { font-family: var(--serif); font-style: italic; font-size: 0.95rem; line-height: 1.5; color: var(--ink); margin-bottom: 0.4rem; }
+.hero-epigraph .attr { font-size: 0.72rem; color: var(--muted); margin: 0; line-height: 1.4; }
 .hero-content { max-width: 620px; flex: 1; }
 .hero-photo { width: 320px; height: 320px; border-radius: 50%; object-fit: cover; object-position: center 20%; border: 4px solid var(--accent-light); box-shadow: 0 8px 32px rgba(0,0,0,0.1); flex-shrink: 0; }
 .hero h1 { font-family: var(--serif); font-size: clamp(2.8rem, 6vw, 4.5rem); font-weight: 700; line-height: 1.1; margin-bottom: 1.5rem; letter-spacing: -0.02em; }
@@ -54,7 +57,7 @@ p.lead { font-size: 1.1rem; line-height: 1.8; }
 
 /* tattoo accent */
 .research-tattoo { display: flex; align-items: flex-start; gap: 2rem; margin-top: 1.5rem; }
-.tattoo-img { width: 140px; border-radius: 4px; opacity: 0.85; flex-shrink: 0; filter: contrast(1.1); }
+.tattoo-img { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; object-position: center; flex-shrink: 0; border: 3px solid var(--accent-light); box-shadow: 0 4px 16px rgba(0,0,0,0.08); filter: contrast(1.05); }
 .research-tattoo p { font-size: 0.95rem; color: var(--muted); font-style: italic; margin: 0; line-height: 1.6; }
 
 .pub-list { list-style: none; }
@@ -62,9 +65,18 @@ p.lead { font-size: 1.1rem; line-height: 1.8; }
 .pub-item:last-child { border-bottom: none; }
 .pub-item .journal { font-family: var(--serif); font-style: italic; color: var(--accent); font-size: 0.95rem; }
 .pub-item .title { font-weight: 500; margin-top: 0.3rem; font-size: 0.95rem; line-height: 1.5; }
+.pub-item .title a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--rule); transition: color 0.2s, border-color 0.2s; }
+.pub-item .title a:hover { color: var(--accent); border-bottom-color: var(--accent); }
 .pub-item .authors { font-size: 0.85rem; color: var(--muted); margin-top: 0.3rem; }
 .pub-item .status { font-size: 0.8rem; color: var(--accent); font-weight: 500; font-style: italic; }
 .pub-note { margin-top: 2rem; padding: 1.2rem 1.5rem; background: var(--accent-light); border-radius: 2px; font-size: 0.9rem; color: var(--accent); }
+
+.fig-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
+.fig-card { border: 1px solid var(--rule); border-radius: 2px; overflow: hidden; background: white; }
+.fig-card img { width: 100%; height: 200px; object-fit: cover; display: block; background: var(--warm); }
+.fig-card figcaption { padding: 0.8rem 1rem; font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
+.fig-card figcaption a { color: var(--accent); text-decoration: none; }
+.fig-card figcaption a:hover { text-decoration: underline; }
 
 .news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
 .news-item { padding: 1.5rem; background: white; border: 1px solid var(--rule); border-radius: 2px; }
@@ -114,6 +126,11 @@ footer { text-align: center; padding: 2rem; font-size: 0.8rem; color: var(--mute
 .hero-content > *:nth-child(4) { animation-delay: 0.4s; }
 .hero-content > *:nth-child(5) { animation-delay: 0.5s; }
 
+@media (max-width: 960px) {
+  .hero { flex-direction: column; }
+  .hero-epigraph { position: static; max-width: 520px; margin: 0 auto 2.5rem; text-align: center; border-right: none; border-bottom: 2px solid var(--accent); padding: 0 0 1rem; }
+}
+
 @media (max-width: 768px) {
   nav { padding: 0.6rem 1rem; } nav .links { gap: 1rem; } nav .links a { font-size: 0.75rem; }
   .hero { padding: 6rem 1.5rem 3rem; }
@@ -141,11 +158,16 @@ footer { text-align: center; padding: 2rem; font-size: 0.8rem; color: var(--mute
 </nav>
 
 <div class="hero">
+  <div class="hero-epigraph">
+    <p class="quote">"Life's aim is an act, not a thought; albeit to refrain [from an act] is no less an act than other actions. Inhibition is, coequally with excitation, a nervous activity."</p>
+    <p class="attr">— Sir Charles Sherrington, <em>The Brain and its Mechanism</em>. Rede Lecture, University of Cambridge, 5 December 1933.</p>
+  </div>
   <div class="hero-inner">
     <div class="hero-content">
       <div class="affiliation">University of Oregon · Center for Translational Neuroscience</div>
       <h1>Sara <span>Parmigiani</span>, PhD</h1>
-      <p class="subtitle">I investigate and improve brain stimulation systems, multi-scale recording pipelines, and open-source tools to inquiry cortical circuits and their functions, aiming at understanding what goes wrong in neurological and psychiatric conditions.</p>
+      <p class="subtitle">Can we read the brain’s control circuitry well enough to know when, where, and in whom to intervene?
+        I investigate and improve brain stimulation systems, multi-scale recording pipelines, and open-source tools to inquire into cortical circuits and their functions, aiming at understanding what goes wrong in neurological and psychiatric conditions.</p>
       <div class="contact-links">
         <a href="mailto:sparmi@uoregon.edu">Email</a>
         <a href="https://scholar.google.it/citations?user=10q2-XkAAAAJ&hl=en&oi=ao" target="_blank">Google Scholar</a>
@@ -161,7 +183,7 @@ footer { text-align: center; padding: 2rem; font-size: 0.8rem; color: var(--mute
 <section id="research">
   <div class="section-label">Research</div>
   <h2>Stimulation, brain stimulation</h2>
-  <p class="lead">Talking the brain language means sometimes to perturbed and stimulate the brain (with magnetic pulses, implanted electrodes, ultrasounds, etc.) but we still do it without fully understanding what the stimulation does to the underlying circuits, whether it arrived at the right moment, or why the same intervention helps one patient and harms another. My research aims at build theories and engineer the tools to close that gap.</p>
+  <p class="lead">Talking the brain language means sometimes to perturb and stimulate the brain (with magnetic pulses, implanted electrodes, ultrasounds, etc.) but we still do it without fully understanding what the stimulation does to the underlying circuits, whether it arrived at the right moment, or why the same intervention helps one patient and harms another. My research aims at build theories and engineer the tools to close that gap.</p>
 
   <div class="pillars">
     <div class="pillar">
@@ -183,14 +205,9 @@ footer { text-align: center; padding: 2rem; font-size: 0.8rem; color: var(--mute
   </div>
 
   <div class="research-tattoo">
-    <img src="brain-tattoo.jpg" alt="Brain tattoo" class="tattoo-img">
+    <img src="brain-tattoo.jpg" alt="Single-line brain tattoo on forearm" class="tattoo-img">
     <p>"The brain is wider than the sky" — Emily Dickinson. Sometimes the commitment is more than professional.</p>
   </div>
-
-  <blockquote style="margin: 2.5rem 0 0; padding: 1.5rem 2rem; border-left: 3px solid var(--accent); background: var(--accent-light); border-radius: 0 2px 2px 0;">
-    <p style="font-family: var(--serif); font-size: 1.15rem; font-style: italic; line-height: 1.7; color: var(--ink); margin-bottom: 0.5rem;">"Life's aim is an act, not a thought; albeit to refrain [from an act] is no less an act than other actions. Inhibition is, coequally with excitation, a nervous activity."</p>
-    <p style="font-size: 0.85rem; color: var(--muted); margin-bottom: 0;">— Sir Charles Sherrington, <em>The Brain and its Mechanism</em>. Rede Lecture, University of Cambridge, 5 December 1933.</p>
-  </blockquote>
 </section>
 
 <section id="publications">
@@ -200,32 +217,32 @@ footer { text-align: center; padding: 2rem; font-size: 0.8rem; color: var(--mute
   <ul class="pub-list">
     <li class="pub-item">
       <span class="journal">Clinical Neurophysiology</span> <span class="year">2025</span>
-      <div class="title">Real-time optimization of cortical excitability in the human dorsolateral prefrontal cortex</div>
+      <div class="title"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11160722/" target="_blank" rel="noopener">Real-time optimization of cortical excitability in the human dorsolateral prefrontal cortex</a></div>
       <div class="authors"><strong>Parmigiani S*</strong>, Cline C, Sarkar M, Forman L, Truong J, Ross JM, Gogulski J, Keller CJ</div>
     </li>
     <li class="pub-item">
       <span class="journal">Nature Communications</span> <span class="year">2025</span>
-      <div class="title">Stimulation mapping and whole-brain modeling reveal gradients of excitability and recurrence in cortical networks</div>
+      <div class="title"><a href="https://www.nature.com/articles/s41467-025-58187-6" target="_blank" rel="noopener">Stimulation mapping and whole-brain modeling reveal gradients of excitability and recurrence in cortical networks</a></div>
       <div class="authors">Momi D, Wang Z, <strong>Parmigiani S</strong>, Mikulan E, ... Keller C, Pigorini A, Griffiths JD</div>
     </li>
     <li class="pub-item">
       <span class="journal">Brain</span> <span class="year">2025</span>
-      <div class="title">High-resolution electrophysiological mapping of effective connectivity of lateral prefrontal cortex</div>
+      <div class="title"><a href="https://doi.org/10.1093/brain/awaf317" target="_blank" rel="noopener">High-resolution electrophysiological mapping of effective connectivity of lateral prefrontal cortex</a></div>
       <div class="authors">Avalos-Alais S, Jedynak M, Boyer A, Chanteloup-Forêt B, Cline CC, <strong>Parmigiani S</strong>, ... David O</div>
     </li>
     <li class="pub-item">
       <span class="journal">Biological Psychiatry: CNNI</span> <span class="year">2022</span>
-      <div class="title">Reliability and validity of TMS-EEG biomarkers</div>
+      <div class="title"><a href="https://doi.org/10.1016/j.bpsc.2022.12.005" target="_blank" rel="noopener">Reliability and validity of TMS-EEG biomarkers</a></div>
       <div class="authors"><strong>Parmigiani S*</strong>, Ross JM, Cline CC, Minasi CB, Gogulski J, Keller CJ</div>
     </li>
     <li class="pub-item">
       <span class="journal">Brain Stimulation</span> <span class="year">2022</span>
-      <div class="title">Simultaneous stereo-EEG and high-density scalp EEG recordings to study the effects of intracerebral stimulation parameters</div>
+      <div class="title"><a href="https://doi.org/10.1016/j.brs.2022.04.007" target="_blank" rel="noopener">Simultaneous stereo-EEG and high-density scalp EEG recordings to study the effects of intracerebral stimulation parameters</a></div>
       <div class="authors"><strong>Parmigiani S*</strong>, Mikulan E, Russo S, Cattani A, Sartori I, Fecchio M, Zauli F, Massimini M, Pigorini A</div>
     </li>
     <li class="pub-item">
       <span class="journal">Scientific Data</span> <span class="year">2020</span>
-      <div class="title">Simultaneous human intracerebral stimulation and HD-EEG: ground truth for source localization methods</div>
+      <div class="title"><a href="https://www.nature.com/articles/s41597-020-0467-x" target="_blank" rel="noopener">Simultaneous human intracerebral stimulation and HD-EEG: ground truth for source localization methods</a></div>
       <div class="authors">Mikulan E, Russo S, <strong>Parmigiani S</strong>, Sarasso S, Zauli F, ... Massimini M, Pigorini A</div>
     </li>
   </ul>
@@ -262,6 +279,28 @@ footer { text-align: center; padding: 2rem; font-size: 0.8rem; color: var(--mute
       <div class="authors">Hassan U, … <strong>Parmigiani S</strong>, … & Keller C</div>
     </li>
   </ul>
+
+  <!-- ============================================================
+       OPTIONAL FIGURE GALLERY — currently disabled.
+       To turn it on: (1) save the figure image files into your repo
+       (e.g. fig-momi.jpg, fig-mikulan.jpg), (2) confirm the filenames
+       below match, (3) delete this opening comment line and the
+       closing "-->" line at the end of the block.
+       Only use figures from your OPEN-ACCESS (CC BY) papers and keep
+       the attribution lines below. See notes in chat.
+  <h3 style="font-family: var(--serif); font-size: 1.4rem; margin-top: 2.5rem; margin-bottom: 0.5rem;">Selected Figures</h3>
+  <p style="font-size: 0.9rem; color: var(--muted); margin-bottom: 0;">From my open-access publications, reused under their Creative Commons licenses.</p>
+  <div class="fig-gallery">
+    <figure class="fig-card">
+      <img src="fig-momi.jpg" alt="Gradients of cortical excitability and recurrence">
+      <figcaption>Gradients of excitability and recurrence across cortical networks. From Momi, Wang, <strong>Parmigiani</strong> et al., <em>Nature Communications</em> (2025), <a href="https://www.nature.com/articles/s41467-025-58187-6" target="_blank" rel="noopener">CC BY 4.0</a>.</figcaption>
+    </figure>
+    <figure class="fig-card">
+      <img src="fig-mikulan.jpg" alt="Simultaneous intracerebral stimulation and HD-EEG setup">
+      <figcaption>Ground-truth recording setup for source localization. From Mikulan, Russo, <strong>Parmigiani</strong> et al., <em>Scientific Data</em> (2020), <a href="https://www.nature.com/articles/s41597-020-0467-x" target="_blank" rel="noopener">CC BY 4.0</a>.</figcaption>
+    </figure>
+  </div>
+  -->
 </section>
 
 <section id="cv">
@@ -354,7 +393,7 @@ footer { text-align: center; padding: 2rem; font-size: 0.8rem; color: var(--mute
     <div class="news-item">
       <div class="date">2025</div>
       <h4>NaviNIBS published in Journal of Neural Engineering</h4>
-      <p>Open-source neuronavigation toolbox for noninvasive brain stimulation now available for the research community.</p>
+      <p> An open-source neuronavigation toolbox for noninvasive brain stimulation is now available for the research community.</p>
     </div>
     <div class="news-item">
       <div class="date">2021</div>
@@ -367,7 +406,7 @@ footer { text-align: center; padding: 2rem; font-size: 0.8rem; color: var(--mute
 <section id="communication">
   <div class="section-label">Science Communication & Translation</div>
   <h2>Bridging languages, bridging fields</h2>
-  <p>Scientific book translator and proofreader for Raffaello Cortina Editore, Milan (2014–present). Selected translations from English to Italian:</p>
+  <p>Scientific book translator and proofreader for <a href="https://www.raffaellocortina.it/" target="_blank" rel="noopener" style="color: var(--accent); font-weight: 500; text-decoration: none; border-bottom: 1px solid var(--rule);">Raffaello Cortina Editore</a>, Milan (2014–present). Selected translations from English to Italian:</p>
   <div class="teaching-grid" style="margin-top: 1rem;">
     <div class="teaching-card">
       <h4>Being You</h4>
@@ -421,7 +460,7 @@ footer { text-align: center; padding: 2rem; font-size: 0.8rem; color: var(--mute
   <div class="contact-inner">
     <div class="section-label">Get in touch</div>
     <h2>Let's talk</h2>
-    <p>I am exploring faculty opportunities and am available for collaborations, consulting, and speaking engagements.</p>
+    <p>I am exploring faculty opportunities and am available for collaborations, consulting, mentoring, and speaking engagements.</p>
     <div class="contact-row">
       <a href="mailto:sparmi@uoregon.edu">Email</a>
       <a href="https://scholar.google.it/citations?user=10q2-XkAAAAJ&hl=en&oi=ao" target="_blank">Google Scholar</a>
@@ -438,3 +477,4 @@ footer { text-align: center; padding: 2rem; font-size: 0.8rem; color: var(--mute
 
 </body>
 </html>
+
